@@ -1,6 +1,9 @@
 // MathLibrary.h - Contains declarations of math functions
 #pragma once
 
+// Pre-processor macros added to header function definitions that are intended on being the interface to the compiled dll
+// See: https://learn.microsoft.com/en-us/cpp/cpp/dllexport-dllimport?view=msvc-170
+// Also see: https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=msvc-170
 #ifdef MATHLIBRARY_EXPORTS
 #define MATHLIBRARY_API __declspec(dllexport)
 #else
