@@ -19,6 +19,10 @@
 // then this relation produces the well-known Fibonacci
 // sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 
+// extern C is good for dll import/export stuff but not needed for internal c++ stuff, provided you define types and members on the type
+//  the format signals to the linker not to add to the function name, since C++ adds function overloading while traditional C does not support that
+//  so if we want to use a header file outside, such as an interface to a DLL, then it can be a good idea to wrap definitions like this
+
 // Initialize a Fibonacci relation sequence
 // such that F(0) = a, F(1) = b.
 // This function must be called before any other function.
