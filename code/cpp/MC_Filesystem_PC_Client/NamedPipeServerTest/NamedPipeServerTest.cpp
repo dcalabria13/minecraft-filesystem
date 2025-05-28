@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "MathLibrary.h"
-#include <iostream>
+#include "PipeServerInternal.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace PipeServerInternal;
 
 namespace NamedPipeServerTest
 {
@@ -11,20 +11,26 @@ namespace NamedPipeServerTest
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(PipeCannotInitWithExistingName)
 		{
-			fibonacci_init(1, 1);
+			NamedPipeServer server1;
+			NamedPipeServer server2;
 
-			// Write out the sequence values until overflow.
-			do {
-				std::cout << fibonacci_index() << ": "
-					<< fibonacci_current() << std::endl;
-			} while (fibonacci_next());
-			// Report count of values written before overflow.
-			std::cout << fibonacci_index() + 1 <<
-				" Fibonacci sequence values fit in an " <<
-				"unsigned 64-bit integer." << std::endl;
+			try 
+			{
+				 server1 = NamedPipeServer("TestPipe1");	
+				 server2 = NamedPipeServer("TestPipe1");
 
+				Assert::Fail(); // fail if the initialization succeeds
+			}
+			catch (std::runtime_error const &rte)
+			{
+				// best thing to check here is that server1 variable did initialize correctly
+			}
+			catch (...)
+			{
+				Assert::Fail(); // no other exceptions should have happened
+			}
 		}
 	};
 }
