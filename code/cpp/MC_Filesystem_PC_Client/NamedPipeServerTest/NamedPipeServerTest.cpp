@@ -18,8 +18,8 @@ namespace NamedPipeServerTest
 
 			try 
 			{
-				 server1 = NamedPipeServer("TestPipe1");	
-				 server2 = NamedPipeServer("TestPipe1");
+				server1 = NamedPipeServer("TestPipe1");	
+				server2 = NamedPipeServer("TestPipe1");
 
 				Assert::Fail(); // fail if the initialization succeeds
 			}
