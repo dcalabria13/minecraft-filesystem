@@ -1,3 +1,5 @@
+// See example server code: https://learn.microsoft.com/en-us/windows/win32/ipc/multithreaded-pipe-server
+
 #include "pch.h"
 #include "NamedPipeFunctionalServer.h"
 
@@ -5,9 +7,6 @@ using namespace NamedPipeFunctionalServer;
 
 HANDLE InitPipeServer(LPCSTR pipeName);
 int RunServerLoop(HANDLE serverHandle);
-
-// Class seems like needless overhead provided we make an assumption:
-//  after the server is started, it will run indefinitely until a "STOP" message is recieved or the program halts
 
 /// <summary>
 /// Start the named pipe server with the default configuration. 
@@ -73,7 +72,3 @@ int RunServerLoop(HANDLE serverHandle)
 
 	return exitCode;
 }
-
-
-
-

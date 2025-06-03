@@ -1,12 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "PipeServerInternal.h"
 
-#include "NamedPipeFunctionalServer.h"
 #include "NamedPipeFunctionalServer.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace PipeServerInternal;
 using namespace NamedPipeFunctionalServer;
 
 namespace NamedPipeServerTest
@@ -15,14 +12,21 @@ namespace NamedPipeServerTest
 	{
 	public:
 		
-		TEST_METHOD(NewFunctionalInitTest)
+		TEST_METHOD(InitServerTest)
 		{
 			int returnValue = Start();
 			Assert::AreEqual(0, returnValue);
-
-			// grab named pipes on system and check for our name
-
-
 		}
+
+		//TEST_METHOD(TryInitTwoServersTest)
+		//{
+		//	int returnValue1 = Start();
+		//	Assert::AreEqual(EXITCODE_SUCCESS, returnValue1);
+
+		//	int returnValue2 = Start();
+		//	Assert::AreEqual(EXITCODE_PIPEINITFAILED, returnValue2);
+		//}
+
+
 	};
 }
