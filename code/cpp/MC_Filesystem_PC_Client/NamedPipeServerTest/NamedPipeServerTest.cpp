@@ -2,8 +2,12 @@
 #include "CppUnitTest.h"
 #include "PipeServerInternal.h"
 
+#include "NamedPipeFunctionalServer.h"
+#include "NamedPipeFunctionalServer.cpp"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace PipeServerInternal;
+using namespace NamedPipeFunctionalServer;
 
 namespace NamedPipeServerTest
 {
@@ -11,26 +15,14 @@ namespace NamedPipeServerTest
 	{
 	public:
 		
-		TEST_METHOD(PipeCannotInitWithExistingName)
+		TEST_METHOD(NewFunctionalInitTest)
 		{
-			NamedPipeServer server1;
-			NamedPipeServer server2;
+			int returnValue = Start();
+			Assert::AreEqual(0, returnValue);
 
-			try 
-			{
-				server1 = NamedPipeServer("TestPipe1");	
-				server2 = NamedPipeServer("TestPipe1");
+			// grab named pipes on system and check for our name
 
-				Assert::Fail(); // fail if the initialization succeeds
-			}
-			catch (std::runtime_error const &rte)
-			{
-				// best thing to check here is that server1 variable did initialize correctly
-			}
-			catch (...)
-			{
-				Assert::Fail(); // no other exceptions should have happened
-			}
+
 		}
 	};
 }
